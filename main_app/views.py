@@ -6,6 +6,14 @@ from django.contrib.auth.forms import UserCreationForm
 def home(request):
     return render(request, 'home.html')
 
+def units(request):
+    return render(request, 'units.html')
+
+def amenities(request):
+    return render(request, 'amenities.html')
+
+def apply(request):
+    return render(request, 'apply.html')
 
 def signup(request):
   error_message = ''

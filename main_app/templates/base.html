@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myPlace</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+    <ul class="my_place_nav_bar">
+        <li class="my_place_nav_item"><a href="PLACEHOLDER FOR HOME" class="my_place_nav_a">Home</a></li>
+        <li class="my_place_nav_item"><a href="PLACEHOLDER FOR UNITS" class="my_place_nav_a">Available Units</a></li>
+        <li class="my_place_nav_item"><a href="PLACEHOLDER FOR AMENITIES" class="my_place_nav_a">Amenities</a></li>
+        <li class="my_place_nav_item float_right"><a href="PLACEHOLDER FOR LOGIN/OUT" class="my_place_nav_a">LOGIN</a></li>
+        <li class="my_place_nav_item float_right"><a href="PLACEHOLDER FOR APPLICATION" class="my_place_nav_a">Apply Here Today!</a></li>
+        <li class="my_place_nav_item float_right"><a href="PLACEHOLDER FOR PROFILE" class="my_place_nav_a">Profile</a></li>
+    </ul>
+
+<body>
+    {% block content %}
+    {% endblock %}
+</body>
+
+    <ul class="my_place_footer_bar">
+        <li class="my_place_nav_item float_right"><a href="PLACEHOLDER FOR ABOUT US" class="my_place_nav_a">About Us</a></li>
+        <li class="my_place_nav_item float_right">Created by HoneyBadger Co.</li>
+    </ul>
+
+</html>

@@ -15,6 +15,9 @@ def amenities(request):
 def apply(request):
     return render(request, 'apply.html')
 
+def about(request):
+    return render(request, 'about.html')
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':

@@ -27,4 +27,3 @@ class Apartment(models.Model):
     (3, 'Three Bedroom')
     ]
 
-

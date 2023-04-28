@@ -2,5 +2,10 @@
 {% block content %}
 
 <h1>Available Units</h1>
+{% for unit in units %}
+    <p>Floor: {{ unit.floor }}</p>
+    <p>Number: {{ unit.number }}</p>
+    <p>Tenant: {{ unit.tenant }}</p>
+{% endfor %}
 
 {% endblock %}

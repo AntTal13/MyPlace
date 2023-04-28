@@ -2,13 +2,15 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from main_app.forms import UserCreationForm
+from .models import UserProfile, Apartment
 
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
 
-def units(request):
-    return render(request, 'units.html')
+def units_avail(request):
+    units = Apartment.objects.filter(tenant__isnull=True)
+    return render(request, 'units.html', { 'units':units })
 
 def amenities(request):
     return render(request, 'amenities.html')

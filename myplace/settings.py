@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'phonenumbers',
 ]
+# PHONE_NUMBER_DEFAULT_REGION = 'US'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

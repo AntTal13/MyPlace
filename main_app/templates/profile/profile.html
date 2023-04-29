@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ user.first_name }} {{ user.last_name }}{% if user.last_name|slice:'-1' == 's' %}' Profile'{% else %}'s Profile{% endif %}</h1>
+
+<br>
+<h2>User Information</h2>
+    User Name:{{ user.username }}
+    <br>
+    Email:{{ user.email }}
+    <br>
+    <a href="">Edit</a>
+<br>
+<br>
+<h2>Contact Information</h2>
+    Phone Number:{{ userprofile.number }}
+    <br>
+    Emergency Contact Name:{{ userprofile.emergency_contact }}
+    <br>
+    Emergency Contact Phone:{{ userprofile.emergency_number }}
+    <br>
+    <a href="{% url 'userprofile_update' userprofile.id %}">Edit</a>
+
+{% endblock %}

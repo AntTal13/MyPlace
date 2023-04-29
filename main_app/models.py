@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 # from phonenumbers import PhoneNumber
 
 # PERMISSIONS = (
@@ -22,6 +23,9 @@ class UserProfile(models.Model):
     emergency_number = models.CharField(max_length=12)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     # user_type = PERMISSIONS[0][0]
+
+    def get_absolute_url(self):
+        return reverse('profile', kwargs={'user_id': self.user.id})
 
 class Apartment(models.Model):
     floor = models.CharField(max_length=2)

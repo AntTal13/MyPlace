@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from main_app.forms import UserCreationForm
@@ -45,3 +47,14 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+def profile(request, user_id):
+    user = User.objects.get(id=user_id)
+    userprofile = UserProfile.objects.get(user=user)
+    return render(request, 'profile/profile.html', { 'user': user, 'userprofile': userprofile })
+
+
+
+class UserProfileUpdate(UpdateView):
+    model = UserProfile
+    fields = ['number', 'emergency_contact', 'emergency_number']

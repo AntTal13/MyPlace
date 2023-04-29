@@ -9,4 +9,6 @@ urlpatterns = [
     path('apply/', views.apply, name='apply'),
     path('about/', views.about, name='about'),
     path('accounts/signup/', views.signup, name='signup'),
+    path('accounts/<int:user_id>/', views.profile, name='profile'),
+    path('profiles/<int:pk>/update/', views.UserProfileUpdate.as_view(), name='userprofile_update'),
 ]

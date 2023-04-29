@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>My Profile</h1>
+<br>
+<h2>{{ user.first_name }} {{ user.last_name }}</h2>
+<br>
+<h2>User Information</h2>
+<form>
+    User Name:<input type="text" name="username" value="{{ user.username }}"></input>
+    <br>
+    Password:<input type="text" name="password" value="{{ user.password }}"></input>
+    <br>
+    Email:<input type="text" name="email" value="{{ user.email }}"></input>
+</form>
+
+
+{% endblock %}

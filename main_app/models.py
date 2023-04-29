@@ -8,6 +8,12 @@ from django.contrib.auth.models import User
 #     ('A', 'Admin')
 # )
 
+ROOMS = (
+    (1, 'One Bedroom'),
+    (2, 'Two Bedroom'),
+    (3, 'Three Bedroom')
+    )
+
 # Create your models here.
 
 class UserProfile(models.Model):
@@ -21,9 +27,8 @@ class Apartment(models.Model):
     floor = models.CharField(max_length=2)
     number = models.IntegerField()
     tenant = models.OneToOneField(UserProfile, on_delete=models.SET_NULL, null=True, blank=True)
-    num_rooms = [
-    (1, 'One Bedroom'),
-    (2, 'Two Bedroom'),
-    (3, 'Three Bedroom')
-    ]
+    num_rooms = models.IntegerField(
+        choices=ROOMS,
+        default=ROOMS[0][0]
+    )
 

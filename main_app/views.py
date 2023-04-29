@@ -10,7 +10,18 @@ def home(request):
 
 def units_avail(request):
     units = Apartment.objects.filter(tenant__isnull=True)
-    return render(request, 'units.html', { 'units':units })
+    i=0
+    j=0
+    k=0
+    for unit in units: 
+        if unit.num_rooms == 1: 
+            i+=1
+        if unit.num_rooms == 2: 
+            j+=1
+        if unit.num_rooms == 3: 
+            k+=1
+    
+    return render(request, 'units.html', { 'units':units, 'i':i,'j':j, 'k':k })
 
 def amenities(request):
     return render(request, 'amenities.html')

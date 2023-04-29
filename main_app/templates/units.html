@@ -1,11 +1,70 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Available Units</h1>
-{% for unit in units %}
-    <p>Floor: {{ unit.floor }}</p>
-    <p>Number: {{ unit.number }}</p>
-    <p>Tenant: {{ unit.tenant }}</p>
-{% endfor %}
+<div class="container">
+    <div class="information_card_apartment">
+      <div class="information_card_title">
+        <h1>One Bedroom Unit</h1>
+      </div>
+      <div class="information_card_flex">
+        <img src="https://i.imgur.com/GhmhlRL.jpg" alt="1br" class="information_card_image">
+        <div class="information_card_description">
+          <p>Looking for a cozy and convenient place to call home? Look no further than our charming one bedroom apartment! This beautifully designed space offers all the benefits of apartment living, with the added bonus of a private bedroom for rest and relaxation. Inside, you'll find a comfortable living area perfect for entertaining guests or just kicking back after a long day. The bedroom is spacious and features plenty of closet space, ensuring you have plenty of room to store all your belongings. Other benefits of our one bedroom apartment include a fully equipped kitchen with modern appliances, and a full bathroom with all the amenities.
+        </div>
+      </div>
+      <div>
+        {% if i >= 1 %}
+        <div class="information_card_availability"><span class="green">Available!</span> With {{ i }} unit(s) open that this time! </div>
+        {% else %}
+        <div class="information_card_availability"><span class="red">Unfortunately this apartment is UnAvailable!</span></div>
+        {% endif %}
+      </div>
+    </div>
+  
+    <div class="information_card_apartment">
+      <div class="information_card_title">
+        <h1>Two Bedroom Unit</h1>
+      </div>
+      <div class="information_card_flex">
+        <img src="https://i.imgur.com/8lnAcnn.jpg" alt="1br" class="information_card_image">
+        <div class="information_card_description">
+          <p> Looking for a spacious and versatile living space? Our two bedroom apartment might just be the perfect fit for you! With two private bedrooms, this apartment offers ample space for rest and relaxation, as well as the possibility to create a home office or guest room. The main living area is bright and inviting, with plenty of natural light and room to entertain friends and family. The fully equipped kitchen features modern appliances, perfect for whipping up your favorite meals. The bedrooms are spacious and comfortable, with plenty of closet space for all your belongings.
+  
+          <p> But perhaps the best feature of our two bedroom apartment is the versatility of the second room. Whether you're a remote worker in need of a dedicated home office or simply looking for a guest room for visitors, the second bedroom offers endless possibilities.
+        </div>
+      </div>
+      <div>
+        {% if j >= 1 %}
+        <div class="information_card_availability"><span class="green">Available!</span> With {{ j }} unit(s) open that this time! </div>
+        {% else %}
+        <div class="information_card_availability"><span class="red">Unfortunately this apartment is UnAvailable!</span></div>
+        {% endif %}
+      </div>
+    </div>
+  
+    <div class="information_card_apartment">
+      <div class="information_card_title">
+        <h1>Three Bedroom Unit</h1>
+      </div>
+      <div class="information_card_flex">
+        <img src="https://i.imgur.com/U0morOa.jpg" alt="1br" class="information_card_image">
+        <div class="information_card_description">
+          <p>Looking for a spacious and luxurious living space for you and your family? Our stunning three bedroom multilevel apartment is just what you're looking for! With three private bedrooms and two bathrooms, this apartment offers ample space for rest and relaxation, as well as plenty of room for entertaining. As you enter, you'll be greeted by a bright and inviting living area, perfect for entertaining guests or just relaxing with your family. The fully equipped kitchen features modern appliances and plenty of counter space, making meal prep a breeze.
+  
+          <p>One of the unique features of our three bedroom apartment is the multilevel design, which adds an extra level of privacy and separation between the bedrooms. The bedrooms are spacious and comfortable, with plenty of closet space for all your belongings. The second bathroom adds an extra level of convenience, ensuring everyone has plenty of space to get ready in the morning.
+        </div>
+      </div>
+      <div>
+        {% if k >= 1 %}
+        <div class="information_card_availability"><span class="green">Available!</span> With {{ k }} unit(s) open that this time! </div>
+        {% else %}
+        <div class="information_card_availability"><span class="red">Unfortunately this apartment is Unavailable!</span></div>
+        {% endif %}
+      </div>
+    </div>
+  
+</div>
+
+<br><br><br><br>
 
 {% endblock %}

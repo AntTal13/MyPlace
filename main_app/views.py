@@ -75,8 +75,13 @@ class UserProfileCreate(CreateView):
 class UpdateUserForm(UpdateView):
     form_class = UpdateUserForm
     template_name = "user/user_update.html"
-    success_url = reverse_lazy('profile')
 
     def get_object(self):
         return self.request.user
     
+    def form_valid(self, form):
+        User = form.save(commit=False)
+        User.save()
+        return redirect('profile', user_id = User.id)        
+
+        

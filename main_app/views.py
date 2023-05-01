@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
+from django import forms
+from .forms import UpdateUserForm
 from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from main_app.forms import UserCreationForm
 from .models import UserProfile, Apartment
+from django.urls import reverse_lazy
 
 # Create your views here.
 def home(request):
@@ -58,3 +61,22 @@ def profile(request, user_id):
 class UserProfileUpdate(UpdateView):
     model = UserProfile
     fields = ['number', 'emergency_contact', 'emergency_number']
+
+class UserProfileCreate(CreateView):
+    model = UserProfile
+    fields = ['number', 'emergency_contact', 'emergency_number']
+
+    def form_valid(self, form):
+         user = self.request.user
+         form.instance.user = user
+         return super(UserProfileCreate, self).form_valid(form)
+         
+
+class UpdateUserForm(UpdateView):
+    form_class = UpdateUserForm
+    template_name = "user/user_update.html"
+    success_url = reverse_lazy('profile')
+
+    def get_object(self):
+        return self.request.user
+    

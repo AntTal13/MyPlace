@@ -15,6 +15,7 @@
         {% if user.is_authenticated %}
             <li class="my_place_nav_item float_right"><a href="{% url 'logout' %}" class="my_place_nav_a">LOG OUT</a></li>
             <li class="my_place_nav_item float_right"><a href="{% url 'profile' user.id %}" class="my_place_nav_a">Profile</a></li>
+            <li class="my_place_nav_item float_right"><a href="{% url 'UserProfileCreate' %}" class="my_place_nav_a">Create User Profile</a></li>
         {% else %}
         <li class="my_place_nav_item float_right"><a href="{% url 'apply' %}" class="my_place_nav_a">Apply Here Today!</a></li>
             <li class="my_place_nav_item float_right"><a href="{% url 'login' %}" class="my_place_nav_a">LOG IN</a></li>

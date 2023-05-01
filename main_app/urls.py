@@ -11,4 +11,6 @@ urlpatterns = [
     path('accounts/signup/', views.signup, name='signup'),
     path('accounts/<int:user_id>/', views.profile, name='profile'),
     path('profiles/<int:pk>/update/', views.UserProfileUpdate.as_view(), name='userprofile_update'),
+    path('profiles/create/', views.UserProfileCreate.as_view(), name='UserProfileCreate'),
+    path('user/<int:pk>/update/', views.UpdateUserForm.as_view(), name='UpdateUserForm'),
 ]

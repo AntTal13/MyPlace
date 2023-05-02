@@ -2,12 +2,14 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django import forms
-from .forms import UpdateUserForm
+from .forms import UpdateUserForm, MaintenanceRequestForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from main_app.forms import UserCreationForm
-from .models import UserProfile, Apartment
+from .models import UserProfile, Apartment, MaintenanceRequest
 from django.urls import reverse_lazy
+from django.utils import timezone
+import os
 
 # Create your views here.
 def home(request):
@@ -54,9 +56,23 @@ def signup(request):
 def profile(request, user_id):
     user = User.objects.get(id=user_id)
     userprofile = UserProfile.objects.get(user=user)
-    return render(request, 'profile/profile.html', { 'user': user, 'userprofile': userprofile })
+    if request.method == 'POST':
+        form = MaintenanceRequestForm(request.POST)
+        if form.is_valid():
+            newrequest = form.save(commit=False)
+            newrequest.user = UserProfile.objects.get(user=request.user)
+            newrequest.created_at = timezone.now()
+            newrequest.updated_at = timezone.now()
+            newrequest.save()
+            return redirect('maintenance_request_index')
+    else:
+        form = MaintenanceRequestForm()
 
+    return render(request, 'profile/profile.html', { 'user': user, 'userprofile': userprofile, 'form': form })
 
+def maintenance_request_index(request):
+    requests = MaintenanceRequest.objects.all().order_by('created_at')
+    return render(request, 'maintenancerequest/maintenancerequest.html', { 'requests' : requests })
 
 class UserProfileUpdate(UpdateView):
     model = UserProfile
@@ -71,7 +87,6 @@ class UserProfileCreate(CreateView):
          form.instance.user = user
          return super(UserProfileCreate, self).form_valid(form)
          
-
 class UpdateUserForm(UpdateView):
     form_class = UpdateUserForm
     template_name = "user/user_update.html"
@@ -82,6 +97,12 @@ class UpdateUserForm(UpdateView):
     def form_valid(self, form):
         User = form.save(commit=False)
         User.save()
-        return redirect('profile', user_id = User.id)        
+        return redirect('profile', user_id = User.id)
+    
+class MaintenanceRequestDelete(DeleteView):
+    model = MaintenanceRequest
+    success_url = "/maintenancerequests"
 
-        
+class MaintenanceRequestUpdate(UpdateView):
+    model = MaintenanceRequest
+    fields = ['title', 'content']

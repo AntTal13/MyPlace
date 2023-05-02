@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Maintenance Requests</h1>
+
+{% for request in requests %}
+
+<div class="information_card_apartment">
+    <div class="information_card_title">
+        <h2>{{ request.title }}</h2>
+    </div>
+    <div class="info_padding">
+        <p>Apartment: {{ request.apartment }}</p>
+        <p>Detail: {{ request.content|linebreaks }}</p>
+        <div class="float_right info_padding">
+            <p>Most Recent Change: {{ request.updated_at }}</p>
+        </div>
+        {% if user_profile.id == request.user_id %}
+        <a href="{% url 'MaintenanceRequestUpdate' request.id %}">
+            <div class="float_right info_padding">
+                Edit
+            </div>
+        </a>
+        <a href="{% url 'MaintenanceRequestDelete' request.id %}">
+        <div class="float_right info_padding">
+            Delete
+        </div>
+        </a>
+        {% endif %}
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}

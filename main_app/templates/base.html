@@ -9,18 +9,26 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
     <ul class="my_place_nav_bar">
-        <li class="my_place_nav_item"><a href="{% url 'home' %}" class="my_place_nav_a">Home</a></li>
-        <li class="my_place_nav_item"><a href="{% url 'units' %}" class="my_place_nav_a">Available Units</a></li>
-        <li class="my_place_nav_item"><a href="{% url 'amenities' %}" class="my_place_nav_a">Amenities</a></li>
+        <a href="{% url 'home' %}" class="my_place_nav_a"><li class="my_place_nav_item">Home</li></a>
+        <a href="{% url 'units' %}" class="my_place_nav_a"><li class="my_place_nav_item">Available Units</li></a>
+        <a href="{% url 'amenities' %}" class="my_place_nav_a"><li class="my_place_nav_item">Amenities</li></a>
         {% if user.is_authenticated %}
-            <li class="my_place_nav_item float_right"><a href="{% url 'logout' %}" class="my_place_nav_a">LOG OUT</a></li>
-            <li class="my_place_nav_item float_right"><a href="{% url 'profile' user.id %}" class="my_place_nav_a">Profile</a></li>
-            <li class="my_place_nav_item float_right"><a href="{% url 'UserProfileCreate' %}" class="my_place_nav_a">Create User Profile</a></li>
+            <a href="{% url 'logout' %}" class="my_place_nav_a"><li class="my_place_nav_item float_right">LOG OUT</li></a>
+            {% if user_profile %}
+            <a href="{% url 'profile' user.id %}" class="my_place_nav_a"><li class="my_place_nav_item float_right">Profile</li></a>
+            {% else %}
+            <a href="{% url 'UserProfileCreate' %}" class="my_place_nav_a"><li class="my_place_nav_item float_right">Create User Profile</li></a>
+            {% endif %}
         {% else %}
-        <li class="my_place_nav_item float_right"><a href="{% url 'apply' %}" class="my_place_nav_a">Apply Here Today!</a></li>
-            <li class="my_place_nav_item float_right"><a href="{% url 'login' %}" class="my_place_nav_a">LOG IN</a></li>
+            <a href="{% url 'login' %}" class="my_place_nav_a"><li class="my_place_nav_item float_right">LOG IN</li></a>
         {% endif %}
     </ul>
+
+    {% if is_property_manager %}
+    <ul class="my_place_admin_bar">
+        <li class="my_place_admin_item">Home</li>
+    </ul>
+    {% endif %}
 
 <body>
     {% block content %}
@@ -28,7 +36,7 @@
 </body>
 
     <ul class="my_place_footer_bar">
-        <li class="my_place_nav_item float_right"><a href="{% url 'about' %}" class="my_place_nav_a">About Us</a></li>
+        <a href="{% url 'about' %}" class="my_place_nav_a"><li class="my_place_nav_item float_right">About Us</li></a>
         <li class="my_place_nav_item float_right">Created by HoneyBadger Co.</li>
     </ul>
 

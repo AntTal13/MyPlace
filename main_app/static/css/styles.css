@@ -17,6 +17,27 @@ body {
   background-color: #333;
   float: top;
 }
+
+.my_place_admin_bar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #f55f5f;
+  float: top;
+}
+
+.my_place_admin_item {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+
+
 .my_place_nav_item {
   float: left;
   display: block;
@@ -155,4 +176,63 @@ body {
 
 .red {
   color: red;
+}
+
+.profile_card_grid {
+  display: grid;
+  margin: 10px;
+  grid-template-columns: 1.5fr 8.5fr;
+  row-gap: 5px;
+}
+
+.info_padding {
+  padding: 10px;
+}
+
+.button_div {
+  padding: 10px;
+  text-decoration: none;
+  color: Black;
+  border-radius: 10px;
+  border: solid black 2px;
+  transition: background-color 0.5s ease;
+  transition: color 0.6s ease;
+}
+
+.button_div:hover {
+  background-color: green;
+  cursor: pointer;
+  color: white;
+}
+
+.large_button {
+  background-color: white;
+  border-radius: 25px;
+  width: 80%;
+  color: black;
+  border: 2px black solid;
+  font-size: 20px;
+  text-align: center;
+  padding: 5px;
+  text-decoration: none;
+  margin: 10px auto 5px auto;
+}
+
+.large_button:hover {
+  background-color: black;
+  color: white;
+  border: 2px white solid;
+}
+
+.maint_item_profile {
+  padding: 4px;
+  text-decoration: none;
+  margin: 5px 5px 10px 25px;
+  color: black;
+  font-size: medium;
+}
+
+.maint_item_profile:hover {
+  color:blue;
+  font-size: Large;
 }

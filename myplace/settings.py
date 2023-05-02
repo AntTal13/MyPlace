@@ -66,7 +66,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'main_app.context_processors.user_profile',
-                'main_app.context_processors.has_apartment'
+                'main_app.context_processors.has_apartment',
+                'main_app.context_processors.has_maintenance_requests'
             ],
         },
     },

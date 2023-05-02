@@ -48,6 +48,18 @@
         </div>
     </div>
 
+    {% if maintenance_requests %}
+    <div class="information_card_apartment">
+        <div class="information_card_title">
+            <h1>Active Maintenance Requests</h1>
+        </div>
+        {% for request in maintenance_requests %}
+        <a href="{% url 'MaintenanceRequestUpdate' request.id %}" class="maint_item_profile"> {{ request.title }} </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+    
+    
     <div class="information_card_apartment">
         <div class="information_card_title">
             <h1>Create a Maintenance Request</h1>
@@ -74,6 +86,9 @@
         </form>
     </div>
 
+    <a href="{% url 'maintenance_request_index'%}" class="large_button">
+        <div class="large_button">Maintenance Requests</div>
+    </a>
 {% else %}
     <div class="information_card_apartment">
         <div class="info_padding"> <p> You have not yet been established as a tenant! </p> </div>

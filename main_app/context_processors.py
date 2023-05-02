@@ -1,4 +1,4 @@
-from .models import UserProfile, Apartment
+from .models import UserProfile, Apartment, MaintenanceRequest
 
 
 def user_profile(request):
@@ -17,3 +17,16 @@ def has_apartment(request):
         if user_profile:
             apartment = Apartment.objects.filter(tenant=user_profile).first()
     return {'has_apartment': bool(apartment), 'apartment': apartment}
+
+def has_maintenance_requests(request):
+    maintenance_requests = []
+    if request.user.is_authenticated:
+        try:
+            user_profile = UserProfile.objects.get(user=request.user)
+            maintenance_requests = MaintenanceRequest.objects.filter(user=user_profile)
+        except UserProfile.DoesNotExist:
+            pass
+
+    context = {'maintenance_requests': maintenance_requests}
+
+    return context

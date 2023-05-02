@@ -2,12 +2,37 @@
 {% block content %}
 
 <h1>Maintenance Requests</h1>
-<p>{% for request in requests %}</p>
-<p>Title: {{ request.title }}</p>
-<p>Apartment: {{ request.apartment }}</p>
-<p>Detail: {{ request.content|linebreaks }}</p>
-<p>Created At: {{ request.created_at }}</p>
-<p>Updated At: {{ request.updated_at }}</p>
+
+{% for request in requests %}
+
+<div class="information_card_apartment">
+    <div class="information_card_title">
+        <h2>{{ request.title }}</h2>
+    </div>
+    <div class="info_padding">
+        <p>Apartment: {{ request.apartment }}</p>
+        <p>Detail: {{ request.content|linebreaks }}</p>
+        {% if request.created_at > request.updated_at %}
+        <div class="float_right info_padding">
+            <p>Created At: {{ request.created_at }}</p>
+        </div>
+        {% else %}
+        <div class="float_right info_padding">
+            <p>Updated At: {{ request.updated_at }}</p>
+        </div>
+        {% endif %}
+        <a href="{% url 'MaintenanceRequestUpdate' request.id %}">
+            <div class="float_right info_padding">
+                Edit
+            </div>
+        </a>
+        <a href="{% url 'MaintenanceRequestDelete' request.id %}">
+        <div class="float_right info_padding">
+            Delete
+        </div>
+        </a>
+    </div>
+</div>
 
 {% endfor %}
 {% endblock %}

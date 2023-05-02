@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+
 # from phonenumbers import PhoneNumber
 
 # PERMISSIONS = (
@@ -35,4 +36,19 @@ class Apartment(models.Model):
         choices=ROOMS,
         default=ROOMS[0][0]
     )
+
+    def __str__(self):
+        return f"Apartment {self.floor}{self.number}"
+
+class MaintenanceRequest(models.Model):
+    title = models.CharField(max_length=255)
+    user = models.ForeignKey('UserProfile', on_delete=models.CASCADE, null=True)
+    apartment = models.ForeignKey('Apartment', on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+    
 

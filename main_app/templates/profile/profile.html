@@ -1,24 +1,85 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>{{ user.first_name }} {{ user.last_name }}{% if user.last_name|slice:'-1' == 's' %}' Profile'{% else %}'s Profile{% endif %}</h1>
+<div class="information_card_apartment">
 
-<br>
-<h2>User Information</h2>
-    User Name:{{ user.username }}
-    <br>
-    Email:{{ user.email }}
-    <br>
-    <a href="{% url 'UpdateUserForm' user.id %}">Edit</a>
-<br>
-<br>
-<h2>Contact Information</h2>
-    Phone Number:{{ userprofile.number }}
-    <br>
-    Emergency Contact Name:{{ userprofile.emergency_contact }}
-    <br>
-    Emergency Contact Phone:{{ userprofile.emergency_number }}
-    <br>
-    <a href="{% url 'userprofile_update' userprofile.id %}">Edit</a>
+    <div class="information_card_title">
+        <h1>{{ user.first_name }} {{ user.last_name }}{% if user.last_name|slice:'-1' == 's' %}' User Information'{% else %}'s User Information{% endif %}</h1>
+    </div>
+
+    <div class="profile_card_grid">
+        <div> Username: </div>
+        <div>{{ user.username }}</div>
+        <div>Email:</div>
+        <div>{{ user.email }}</div>
+        <div></div>
+        <div> <a href="{% url 'UpdateUserForm' user.id %}"> <div class="button_div float_right"> Edit </div> </a> </div>
+    </div>
+
+</div>
+
+<div class="information_card_apartment">
+    <div class="information_card_title">
+        <h2>Additional Profile Information</h2>
+    </div>
+
+    <div class="profile_card_grid">
+        <div> Phone Number: </div>
+        <div> {{ userprofile.number }} </div>
+        <div> Emergency Contact Name: </div>
+        <div> {{ userprofile.emergency_contact }} </div>
+        <div> Emergency Contact Phone: </div>
+        <div> {{ userprofile.emergency_number }} </div>
+        <div>  </div>
+        <div> <a href="{% url 'userprofile_update' userprofile.id %}"> <div class="button_div float_right"> Edit </div> </a> </div>
+    </div>
+</div>
+
+{% if has_apartment %}
+    <div class="information_card_apartment">
+        <div class="information_card_title">
+            <h2>Your Apartment!</h2>
+        </div>
+        <div class="profile_card_grid">
+            <div>Apartment Number: </div>
+            <div>{{ apartment.floor }}{{ apartment.number }}</div>
+            <div>Number of Rooms: </div>
+            <div>{{ apartment.num_rooms }}</div>
+        </div>
+    </div>
+
+    <div class="information_card_apartment">
+        <div class="information_card_title">
+            <h1>Create a Maintenance Request</h1>
+        </div>
+        <div class="info_padding">
+            <form method="post">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="{{ form.title.id_for_label }}">Title:</label>
+                      {{ form.title }}
+                    </div>
+                    <div class="form-group">
+                      <label for="{{ form.apartment.id_for_label }}">Apartment:</label>
+                      {{ form.apartment }}
+                    </div>
+                    <div class="form-group">
+                      <label for="{{ form.content.id_for_label }}">Content:</label>
+                      {{ form.content }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+        </div>
+        </form>
+    </div>
+
+{% else %}
+    <div class="information_card_apartment">
+        <div class="info_padding"> <p> You have not yet been established as a tenant! </p> </div>
+    </div>
+{% endif %}
+
+
 
 {% endblock %}

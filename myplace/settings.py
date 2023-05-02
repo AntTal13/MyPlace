@@ -65,6 +65,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main_app.context_processors.user_profile',
+                'main_app.context_processors.has_apartment'
             ],
         },
     },
@@ -79,8 +81,11 @@ WSGI_APPLICATION = 'myplace.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+        'HOST': 'localhost',
         'NAME': 'myplace',
-    }
+        'PORT': 5433,
+        'PASSWORD': '852085'
+    },
 }
 
 

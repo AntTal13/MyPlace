@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'myplace.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'AntTal13/MyPlace',
+        'NAME': 'AntTal13/myplace',
         'USER': os.environ['DB_USER'],
         'PASSWORD': os.environ['DB_PW'],
         'HOST': 'db.bit.io',

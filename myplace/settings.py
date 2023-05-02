@@ -90,9 +90,9 @@ WSGI_APPLICATION = 'myplace.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Shaleik9/MyPlace',
+        'NAME': 'AntTal13/myplace',
         'USER': os.environ['DB_USER'],
-        'PASSWORD': os.environ['DB_PW'],
+        'PASSWORD': 'os.environ['DB_PW']',
         'HOST': 'db.bit.io',
         'PORT': '5432'
     },

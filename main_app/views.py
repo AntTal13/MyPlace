@@ -97,3 +97,11 @@ class UpdateUserForm(UpdateView):
         User = form.save(commit=False)
         User.save()
         return redirect('profile', user_id = User.id)
+    
+class MaintenanceRequestDelete(DeleteView):
+    model = MaintenanceRequest
+    success_url = "/maintenancerequests"
+
+class MaintenanceRequestUpdate(UpdateView):
+    model = MaintenanceRequest
+    fields = ['title', 'content']

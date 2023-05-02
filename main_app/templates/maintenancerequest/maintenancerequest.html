@@ -12,15 +12,10 @@
     <div class="info_padding">
         <p>Apartment: {{ request.apartment }}</p>
         <p>Detail: {{ request.content|linebreaks }}</p>
-        {% if request.created_at > request.updated_at %}
         <div class="float_right info_padding">
-            <p>Created At: {{ request.created_at }}</p>
+            <p>Most Recent Change: {{ request.updated_at }}</p>
         </div>
-        {% else %}
-        <div class="float_right info_padding">
-            <p>Updated At: {{ request.updated_at }}</p>
-        </div>
-        {% endif %}
+        {% if user_profile.id == request.user_id %}
         <a href="{% url 'MaintenanceRequestUpdate' request.id %}">
             <div class="float_right info_padding">
                 Edit
@@ -31,6 +26,7 @@
             Delete
         </div>
         </a>
+        {% endif %}
     </div>
 </div>
 

@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from main_app.forms import UserCreationForm
 from .models import UserProfile, Apartment, MaintenanceRequest
 from django.urls import reverse_lazy
+from django.utils import timezone
 
 # Create your views here.
 def home(request):
@@ -57,11 +58,20 @@ def profile(request, user_id):
     if request.method == 'POST':
         form = MaintenanceRequestForm(request.POST)
         if form.is_valid():
-            form.save()
+            newrequest = form.save(commit=False)
+            newrequest.user = UserProfile.objects.get(user=request.user)
+            newrequest.created_at = timezone.now()
+            newrequest.updated_at = timezone.now()
+            newrequest.save()
+            return redirect('maintenance_request_index')
     else:
         form = MaintenanceRequestForm()
 
     return render(request, 'profile/profile.html', { 'user': user, 'userprofile': userprofile, 'form': form })
+
+def maintenance_request_index(request):
+    requests = MaintenanceRequest.objects.all().order_by('created_at')
+    return render(request, 'maintenancerequest/maintenancerequest.html', { 'requests' : requests })
 
 class UserProfileUpdate(UpdateView):
     model = UserProfile

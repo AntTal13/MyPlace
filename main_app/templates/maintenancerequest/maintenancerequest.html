@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Maintenance Requests</h1>
+<p>{% for request in requests %}</p>
+<p>Title: {{ request.title }}</p>
+<p>Apartment: {{ request.apartment }}</p>
+<p>Detail: {{ request.content|linebreaks }}</p>
+<p>Created At: {{ request.created_at }}</p>
+<p>Updated At: {{ request.updated_at }}</p>
+
+{% endfor %}
+{% endblock %}

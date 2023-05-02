@@ -9,6 +9,7 @@ from main_app.forms import UserCreationForm
 from .models import UserProfile, Apartment, MaintenanceRequest
 from django.urls import reverse_lazy
 from django.utils import timezone
+import os
 
 # Create your views here.
 def home(request):

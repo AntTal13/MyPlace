@@ -24,6 +24,12 @@
         {% endif %}
     </ul>
 
+    {% if is_property_manager %}
+    <ul class="my_place_admin_bar">
+        <li class="my_place_admin_item">Home</li>
+    </ul>
+    {% endif %}
+
 <body>
     {% block content %}
     {% endblock %}

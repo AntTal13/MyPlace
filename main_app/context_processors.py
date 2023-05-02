@@ -30,3 +30,16 @@ def has_maintenance_requests(request):
     context = {'maintenance_requests': maintenance_requests}
 
     return context
+
+def is_property_manager(request):
+    is_property_manager = False
+    user_profile = None
+    if request.user.is_authenticated:
+        try:
+            user_profile = UserProfile.objects.get(user=request.user)
+            is_property_manager = user_profile.is_property_manager
+        except UserProfile.DoesNotExist:
+            pass
+    context = {'is_property_manager': is_property_manager}
+
+    return context

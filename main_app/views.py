@@ -11,6 +11,7 @@ from .models import UserProfile, Apartment, MaintenanceRequest
 from django.urls import reverse_lazy
 from django.utils import timezone
 import os
+from django.db.models import F
 
 # Create your views here.
 def home(request):
@@ -140,3 +141,12 @@ class UnassignedApplicants(ListView):
         apartment.save()
         return redirect('Unassigned_Applicants')
 
+class TenantInfo(ListView):
+    model = UserProfile
+    template_name = 'property_manager/tenant_info.html'
+    context_object_name = 'tenants'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.filter(apartment__isnull=False).annotate(fl=F('apartment__floor'), num=F('apartment__number')).order_by('fl', 'num')
+        return UserProfile.objects.filter(apartment__isnull=False).order_by('user__last_name')

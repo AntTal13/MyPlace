@@ -6,7 +6,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('units/', views.units_avail, name='units'),
     path('amenities/', views.amenities, name='amenities'),
-    path('apply/', views.apply, name='apply'),
     path('about/', views.about, name='about'),
     path('accounts/signup/', views.signup, name='signup'),
     path('accounts/<int:user_id>/', views.profile, name='profile'),
@@ -18,5 +17,7 @@ urlpatterns = [
     path('maintenancerequests/<int:pk>/update/', views.MaintenanceRequestUpdate.as_view(), name='MaintenanceRequestUpdate'),
     path('property_manager/unassigned_applicants/', views.UnassignedApplicants.as_view(), name='Unassigned_Applicants'),
     path('property_manager/tenant_info/', views.TenantInfo.as_view(), name='All_Tenant_Info'),
+    path('property_manager/apartment_list/', views.apartment_list, name='apartment_list'),
     path('assign_apartment/<int:pk>/', views.assign_apartment, name='assign_apartment'),
+    path('remove_tenant/<int:pk>/', views.remove_tenant, name='remove_tenant'),
 ]

@@ -17,6 +17,9 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     is_property_manager = models.BooleanField(default=False)
 
+    def __str__(self):
+        return f"{self.user.first_name} {self.user.last_name}"
+
     def get_absolute_url(self):
         return reverse('profile', kwargs={'user_id': self.user.id})
 

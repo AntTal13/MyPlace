@@ -26,7 +26,8 @@
 
     {% if is_property_manager %}
     <ul class="my_place_admin_bar">
-        <li class="my_place_admin_item">Home</li>
+        <li class="my_place_nav_item">Admin Nav Bar:</li>
+        <li><a href="{% url 'Unassigned_Applicants' %}" class="my_place_nav_a"><li class="my_place_nav_item">Unassigned Applicants</li></a>
     </ul>
     {% endif %}
 

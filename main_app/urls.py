@@ -15,5 +15,7 @@ urlpatterns = [
     path('user/<int:pk>/update/', views.UpdateUserForm.as_view(), name='UpdateUserForm'),
     path('maintenancerequests/', views.maintenance_request_index, name='maintenance_request_index'),
     path('maintenancerequests/<int:pk>/delete/', views.MaintenanceRequestDelete.as_view(), name='MaintenanceRequestDelete'),
-    path('maintenancerequests/<int:pk>/update/', views.MaintenanceRequestUpdate.as_view(), name='MaintenanceRequestUpdate')
+    path('maintenancerequests/<int:pk>/update/', views.MaintenanceRequestUpdate.as_view(), name='MaintenanceRequestUpdate'),
+    path('property_manager/unassigned_applicants/', views.UnassignedApplicants.as_view(), name='Unassigned_Applicants'),
+    path('assign_apartment/<int:pk>/', views.assign_apartment, name='assign_apartment'),
 ]

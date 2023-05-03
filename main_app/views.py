@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from django.contrib.auth.models import User
 from django import forms
 from .forms import UpdateUserForm, MaintenanceRequestForm
@@ -74,6 +75,16 @@ def maintenance_request_index(request):
     requests = MaintenanceRequest.objects.all().order_by('created_at')
     return render(request, 'maintenancerequest/maintenancerequest.html', { 'requests' : requests })
 
+def assign_apartment(request, **kwargs):
+    if request.method == 'POST':
+        apartment_id = request.POST.get('apartment')
+        userprofile_id = kwargs['pk']
+        apartment = Apartment.objects.get(id=apartment_id)
+        userprofile = UserProfile.objects.get(id=userprofile_id)
+        apartment.tenant = userprofile
+        apartment.save()
+    return redirect('Unassigned_Applicants')
+
 class UserProfileUpdate(UpdateView):
     model = UserProfile
     fields = ['number', 'emergency_contact', 'emergency_number']
@@ -106,3 +117,26 @@ class MaintenanceRequestDelete(DeleteView):
 class MaintenanceRequestUpdate(UpdateView):
     model = MaintenanceRequest
     fields = ['title', 'content']
+
+class UnassignedApplicants(ListView):
+    model = UserProfile
+    template_name = 'property_manager/unassigned_applicants.html'
+
+    def get_queryset(self):
+        queryset = UserProfile.objects.filter(apartment__isnull=True)
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['unassigned_apartments'] = Apartment.objects.filter(tenant=None)
+        return context
+
+    def post(self, request, *args, **kwargs):
+        apartment_id = request.POST.get('apartment')
+        userprofile_id = kwargs['pk']
+        apartment = Apartment.objects.get(id=apartment_id)
+        userprofile = UserProfile.objects.get(id=userprofile_id)
+        apartment.tenant = userprofile
+        apartment.save()
+        return redirect('Unassigned_Applicants')
+

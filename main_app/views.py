@@ -88,10 +88,12 @@ def assign_apartment(request, **kwargs):
         apartment.save()
     return redirect('Unassigned_Applicants')
 
+@login_required
 def apartment_list(request):
     apartments = Apartment.objects.all().prefetch_related('tenant').annotate(fl=F('floor'), num=F('number')).order_by('fl', 'num')
     return render(request, 'property_manager/apartment_list.html', {'apartments': apartments})
 
+@login_required
 def remove_tenant(request, pk):
     apartment = get_object_or_404(Apartment, pk=pk)
     if apartment.tenant:

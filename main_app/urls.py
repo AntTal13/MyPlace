@@ -17,5 +17,6 @@ urlpatterns = [
     path('maintenancerequests/<int:pk>/delete/', views.MaintenanceRequestDelete.as_view(), name='MaintenanceRequestDelete'),
     path('maintenancerequests/<int:pk>/update/', views.MaintenanceRequestUpdate.as_view(), name='MaintenanceRequestUpdate'),
     path('property_manager/unassigned_applicants/', views.UnassignedApplicants.as_view(), name='Unassigned_Applicants'),
+    path('property_manager/tenant_info/', views.TenantInfo.as_view(), name='All_Tenant_Info'),
     path('assign_apartment/<int:pk>/', views.assign_apartment, name='assign_apartment'),
 ]

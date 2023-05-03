@@ -33,7 +33,7 @@ class Apartment(models.Model):
     )
 
     def __str__(self):
-        return f"Apartment {self.floor}{self.number}"
+        return f"{self.floor}-{self.number}"
 
 class MaintenanceRequest(models.Model):
     title = models.CharField(max_length=255)

@@ -67,10 +67,24 @@ body {
 .my_place_nav_item:hover {
   background-color: green;
 }
+
+.my_place_nav_item_no_hover {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.float_left {
+  float: left;
+}
+
 .my_place_nav_a {
   text-decoration: none;
   color: inherit;
 }
+
 .home_page_image_slideshow {
   height: 600px;
   width: 100%;
@@ -102,22 +116,23 @@ body {
 @keyframes home_page_image_slideshow {
   0%,
   100% {
-    background-image: url("https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-image: url("https://i.imgur.com/8PviNCG.jpg");
   }
   25% {
-    background-image: url("https://images.pexels.com/photos/2325446/pexels-photo-2325446.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-image: url("https://i.imgur.com/jYhHfNl.jpg");
   }
   50% {
-    background-image: url("https://images.pexels.com/photos/2387418/pexels-photo-2387418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-image: url("https://i.imgur.com/PFUNWZN.jpg");
   }
   75% {
-    background-image: url("https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-image: url("https://i.imgur.com/ciVlNOL.jpg");
   }
 }
 .nav_page_title {
+  color: rgb(255,255,255);
+  text-shadow: 3px 3px black;
   position: relative;
   float: top;
-  width: 100%;
   text-align: center;
   padding-top: 15px;
   font-family: "Londrina Shadow", cursive;
@@ -235,4 +250,233 @@ body {
 .maint_item_profile:hover {
   color:blue;
   font-size: Large;
+}
+
+.amenities {
+  background-color: #000;
+  color: #fff;
+  min-height: 100vh;
+  margin: 0;
+  padding-bottom: 60px;
+}
+
+.amenities h1 {
+  padding-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.amenities .grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.amenities .grid-item {
+  position: relative;
+}
+
+.amenities .grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.amenities .grid-item span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgb(255,255,255);
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+.tenantsInfo {
+  background-color: rgb(245, 245, 245);
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+}
+
+.tenantsInfo .title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.tenantsInfo .total {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.tenantsInfo .tenants {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tenantsInfo .header {
+  background-color: rgb(224, 224, 224);
+  border: 1px solid rgb(192, 192, 192);
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
+
+.tenantsInfo tbody tr:nth-child(even) {
+  background-color: rgb(236, 235, 235);
+}
+
+.tenantsInfo tbody tr:hover {
+  background-color: rgb(202, 201, 201);
+}
+
+.tenantsInfo td {
+  font-size: 14px;
+  padding: 10px;
+  font-family: math;
+}
+
+.apartmentList {
+  background-color: rgb(245, 245, 245);
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+}
+
+.apartmentList .title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.apartmentList .apartments {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.apartmentList .header {
+  background-color: rgb(224, 224, 224);
+  border: 1px solid rgb(192, 192, 192);
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px;
+  text-align: left;
+}
+
+.apartmentList tbody tr:nth-child(even) {
+  background-color: rgb(236, 235, 235);
+}
+
+.apartmentList tbody tr:hover {
+  background-color: rgb(202, 201, 201);
+}
+
+.apartmentList td {
+  font-size: 14px;
+  padding: 10px;
+  font-family: math;
+}
+
+.apartmentList .removeButton {
+  background-color: rgb(255, 0, 0);
+  color: rgb(255,255,255);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.apartmentList .removeButton:hover {
+  background-color: rgb(122, 0, 0);
+}
+
+.unassignedApplicants {
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.unassignedApplicants h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.unassignedList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.unassignedItem {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: math;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.unassignedItem:last-child {
+  margin-bottom: 0;
+}
+
+.assignForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.assignSelect {
+  margin-right: 10px;
+}
+
+.assignButton {
+  margin-top: 10px;
+}
+
+.assignButton input[type="submit"] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.assignButton input[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+.about_us_grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 2fr 8fr;
+}
+
+.about_us_profile {
+  grid-row: 1/3;
+  border-radius: 25px;
+  width: 100%;
+}
+
+.icon {
+  max-width: 20px;
+  height: auto;
+  margin-right: 10px;
+  margin-left: 20px;
+}
+
+.information_card_container {
+  margin: 60px;
 }

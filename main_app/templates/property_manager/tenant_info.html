@@ -1,0 +1,41 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+
+<div class="tenantsInfo">
+  <h1 class="title">All Tenants</h1>
+  <p class="total">Total number of tenants: {{ tenants|length }}</p>
+
+  <table class="tenants">
+    <thead>
+      <tr>
+        <th class="header">First Name</th>
+        <th class="header">Last Name</th>
+        <th class="header">Apartment Number</th>
+        <th class="header">Email</th>
+        <th class="header">Phone Number</th>
+        <th class="header">Emergency Contact Name</th>
+        <th class="header">Emergency Contact Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for tenant in tenants %}
+      <tr>
+        <td>{{ tenant.user.first_name }}</td>
+        <td>{{ tenant.user.last_name }}</td>
+        <td>{{ tenant.apartment }}</td>
+        <td>{{ tenant.user.email }}</td>
+        <td>{{ tenant.number }}</td>
+        <td>{{ tenant.emergency_contact }}</td>
+        <td>{{ tenant.emergency_number }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="7">No tenants found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

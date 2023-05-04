@@ -15,7 +15,7 @@
         <div class="float_right info_padding">
             <p>Most Recent Change: {{ request.updated_at }}</p>
         </div>
-        {% if user_profile.id == request.user_id %}
+        {% if user_profile.id == request.user_id or is_property_manager %}
         <a href="{% url 'MaintenanceRequestUpdate' request.id %}">
             <div class="float_right info_padding">
                 Edit

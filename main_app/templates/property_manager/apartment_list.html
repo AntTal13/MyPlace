@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="apartmentList">
+  <h1 class="title">Apartment List</h1>
+  <table class="apartments">
+    <thead>
+      <tr>
+        <th class="header">Apartment</th>
+        <th class="header">Tenant</th>
+        <th class="header">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for apartment in apartments %}
+        <tr>
+          <td>{{ apartment }}</td>
+          <td>
+            {% if apartment.tenant %}
+              {{ apartment.tenant.user }}
+            {% else %}
+              None
+            {% endif %}
+          </td>
+          <td>
+            {% if apartment.tenant %}
+              <form method="POST" action="{% url 'remove_tenant' apartment.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="removeButton">Remove Tenant</button>
+              </form>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>  
+
+{% endblock %}

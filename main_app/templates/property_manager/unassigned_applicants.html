@@ -1,0 +1,41 @@
+{% extends 'base.html' %} 
+{% block content %} 
+{% if is_property_manager %}
+
+<div class="unassignedApplicants">
+  <h1 class="">Unassigned User Profiles</h1>
+  <ul class="unassignedList">
+    {% for userprofile in object_list %}
+    <li class="unassignedItem">
+      {{ userprofile.user.first_name }} {{ userprofile.user.last_name }}
+      <form
+        class="assignForm"
+        method="post"
+        action="{% url 'assign_apartment' userprofile.id %}"
+      >
+        {% csrf_token %}
+        <div class="assignSelect">
+          <select name="apartment">
+            {% for apartment in unassigned_apartments %}
+            <option value="{{ apartment.id }}">
+              Apartment {{ apartment.floor }}{{ apartment.number }}
+            </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="assignButton">
+          <input type="submit" value="Assign" />
+        </div>
+      </form>
+    </li>
+    {% empty %}
+    <li>No unassigned user profiles.</li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% else %}
+<br />
+<h1>Admin Only Page</h1>
+{% endif %} 
+{% endblock %}

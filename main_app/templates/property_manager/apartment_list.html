@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Apartment List</h1>
-  <table>
+<div class="apartmentList">
+  <h1 class="title">Apartment List</h1>
+  <table class="apartments">
     <thead>
       <tr>
-        <th>Apartment</th>
-        <th>Tenant</th>
-        <th>Actions</th>
+        <th class="header">Apartment</th>
+        <th class="header">Tenant</th>
+        <th class="header">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -25,7 +26,7 @@
             {% if apartment.tenant %}
               <form method="POST" action="{% url 'remove_tenant' apartment.pk %}">
                 {% csrf_token %}
-                <button type="submit">Remove Tenant</button>
+                <button type="submit" class="removeButton">Remove Tenant</button>
               </form>
             {% endif %}
           </td>
@@ -33,5 +34,6 @@
       {% endfor %}
     </tbody>
   </table>
+</div>  
 
 {% endblock %}

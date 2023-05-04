@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Unassigned User Profiles</h1>
+<ul>
+{% for userprofile in object_list %}
+    <li>{{ userprofile.user.first_name }} {{ userprofile.user.last_name }}</li>
+{% empty %}
+    <li>No unassigned user profiles.</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

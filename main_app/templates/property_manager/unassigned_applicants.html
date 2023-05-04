@@ -1,26 +1,41 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} 
+{% block content %} 
 {% if is_property_manager %}
 
-<h1>Unassigned User Profiles</h1>
-<ul>
-{% for userprofile in object_list %}
-    <li>{{ userprofile.user.first_name }} {{ userprofile.user.last_name }} <form method="post" action="{% url 'assign_apartment' userprofile.id %}">
+<div class="unassignedApplicants">
+  <h1 class="">Unassigned User Profiles</h1>
+  <ul class="unassignedList">
+    {% for userprofile in object_list %}
+    <li class="unassignedItem">
+      {{ userprofile.user.first_name }} {{ userprofile.user.last_name }}
+      <form
+        class="assignForm"
+        method="post"
+        action="{% url 'assign_apartment' userprofile.id %}"
+      >
         {% csrf_token %}
-        <select name="apartment">
+        <div class="assignSelect">
+          <select name="apartment">
             {% for apartment in unassigned_apartments %}
-                <option value="{{ apartment.id }}">Apartment {{ apartment.floor }}{{ apartment.number }}</option>
+            <option value="{{ apartment.id }}">
+              Apartment {{ apartment.floor }}{{ apartment.number }}
+            </option>
             {% endfor %}
-        </select>
-        <input type="submit" value="Assign">
-    </form></li>
-{% empty %}
+          </select>
+        </div>
+        <div class="assignButton">
+          <input type="submit" value="Assign" />
+        </div>
+      </form>
+    </li>
+    {% empty %}
     <li>No unassigned user profiles.</li>
-{% endfor %}
-</ul>
+    {% endfor %}
+  </ul>
+</div>
 
 {% else %}
-    <br>
-    <h1>Admin Only Page</h1>
-{% endif %}
+<br />
+<h1>Admin Only Page</h1>
+{% endif %} 
 {% endblock %}
